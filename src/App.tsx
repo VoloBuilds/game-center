@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Game, GameState } from '@/types'
 import { TicTacToe } from '@/components/games/TicTacToe'
 import { Memory } from '@/components/games/Memory'
+import { Snake } from '@/components/games/Snake'
 
 function App() {
   const [theme, setTheme] = useState(() => {
@@ -93,6 +94,16 @@ function App() {
             )}
             {gameState.currentGame?.route === '/games/memory' && (
               <Memory 
+                onGameComplete={(score) => {
+                  setGameState(prev => ({
+                    ...prev,
+                    gameStatus: 'completed'
+                  }));
+                }}
+              />
+            )}
+            {gameState.currentGame?.route === '/games/snake' && (
+              <Snake 
                 onGameComplete={(score) => {
                   setGameState(prev => ({
                     ...prev,
